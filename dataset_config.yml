@@ -1,0 +1,6 @@
+data_root: ../DataWorkshop_DNADNA
+dataset_name: BacterialDemoSelection
+scenario_params_path: ../DataWorkshop_DNADNA/SPIBact_param_1000
+data_source:
+    format: dnadna
+    filename_format: "scenario_{scenario}/{dataset_name}_{scenario}_{replicate}.npz"
