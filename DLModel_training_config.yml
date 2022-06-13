@@ -1,132 +1,261 @@
-# required configuration for the `dnadna preprocess` command
+# the main training configuration, typically generated from an existing
+# preprocessing config file
 
-# root directory for all training runs of this model / training configuration
-model_root: .
+# seed for initializing the PRNG prior to a training run for reproducible
+# results; if unspecified the PRNG chooses its default seeding method
+seed: null
 
-# unique name to give to models trained with this configuration; individual
-# training runs will prepend this to the run_id
-model_name: DLModel
+# format string for the filename of the final output model; it can use the
+# template variables model_name, run_name, and/or run_id, while the required
+# variable "checkpoint" will be replaced with names like "best", "last" and
+# other intermediate checkpoints
+model_filename_format: '{model_name}_{run_name}_{checkpoint}_net.pth'
+
+# format string for the name given to this run for a sequence of runs of the
+# same model; the outputs of each run are placed in subdirectories of
+# <run_path>/<model_name> with the name of this run; the format string can use
+# the template variables model_name and run_id
+run_name_format: run_{run_id}
+
+# name and parameters of the neural net model to train
+network:
+    name: CustomCNN
+
+    # net parameters for CNN
+    params: {}
+
+# name and parameters of the optimizer to use; all built-in optimizers from the
+# torch.optim package are available for use here, and you can also provide a
+# custom optimizer via a plugin
+optimizer:
+    name: Adam
+    params:
+        learning_rate: 0.001
+        weight_decay: 0
+        betas:
+        - 0.9
+        - 0.999
+        eps: 1.0e-08
+        amsgrad: false
+        maximize: false
 
 # the dataset/simulation configuration
 dataset:
-    inherit: ../dataset_config.yml
+    # path to the CSV file containing the per-scenario parameters used in this
+    # simulation, either as an absolute path, or as a path relative to this
+    # config file
+    scenario_params_path: DLModel_preprocessed_params.csv
+
+# list of transforms to apply to the dataset; all optional transforms are
+# disabled by default unless specified here; transforms which don't take any
+# parameters can be listed just by their name, whereas transforms which do take
+# parameters are given as {'name': <name>, 'param1':, 'param2':, ...}, where the
+# params map param names (specific to the transform) to their values
+dataset_transforms:
+-   crop:
+        max_snp: 400
+        max_indiv: 50
+        keep_polymorphic_only: true
+-   snp_format: concat
+-   validate_snp:
+        uniform_shape: false
+
+# number of epochs over which to repeat the training process
+n_epochs: 1
+
+# interval (number of batches processed) between two validation steps; for m
+# evaluations per epoch, set to n_training_samples // (batch_size * m) where the
+# number of training samples can be found in training logs
+evaluation_interval: 17
+
+# sample batch size to train on
+batch_size: 8
+
+# number of subprocesses to use for data loading
+loader_num_workers: 2
+
+# use CUDA-capable GPU where available
+use_cuda: true
+
+# specifies the CUDA device index to use
+cuda_device: null
 
 # description of the parameters the network will be trained on
 learned_params:
-    T00:
+-   T00:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T01:
+        log_transform: false
+        tied_to_position: false
+-   T01:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T02:
+        log_transform: false
+        tied_to_position: false
+-   T02:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T03:
+        log_transform: false
+        tied_to_position: false
+-   T03:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T04:
+        log_transform: false
+        tied_to_position: false
+-   T04:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T05:
+        log_transform: false
+        tied_to_position: false
+-   T05:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T06:
+        log_transform: false
+        tied_to_position: false
+-   T06:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T07:
+        log_transform: false
+        tied_to_position: false
+-   T07:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T08:
+        log_transform: false
+        tied_to_position: false
+-   T08:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T09:
+        log_transform: false
+        tied_to_position: false
+-   T09:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T10:
+        log_transform: false
+        tied_to_position: false
+-   T10:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T11:
+        log_transform: false
+        tied_to_position: false
+-   T11:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T12:
+        log_transform: false
+        tied_to_position: false
+-   T12:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T13:
+        log_transform: false
+        tied_to_position: false
+-   T13:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T14:
+        log_transform: false
+        tied_to_position: false
+-   T14:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T15:
+        log_transform: false
+        tied_to_position: false
+-   T15:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T16:
+        log_transform: false
+        tied_to_position: false
+-   T16:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T17:
+        log_transform: false
+        tied_to_position: false
+-   T17:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T18:
+        log_transform: false
+        tied_to_position: false
+-   T18:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T19:
+        log_transform: false
+        tied_to_position: false
+-   T19:
         type: regression
         loss_func: MSE
         loss_weight: 1
-    T20:
+        log_transform: false
+        tied_to_position: false
+-   T20:
         type: regression
         loss_func: MSE
         loss_weight: 1
+        log_transform: false
+        tied_to_position: false
 
-# how to split the dataset between training, validation, and test sets numbers
-# given for each subset are ratios which must sum to 1; if less than 1 some
-# portion of the dataset will be omitted, and if more than 1 an error is raised
-# dataset splits are performed after unusable scenarios are omitted according to
-# the pre-processing parameters (min_snp, etc.)
-dataset_splits:
-    # portion of the dataset to use for training
-    training: 0.1
+# mean of each regression parameter over the training set
+train_mean:
+    T00: 80678.63217393187
+    T01: 80678.63217393187
+    T02: 82950.16407679158
+    T03: 90136.61138335337
+    T04: 108162.53786526593
+    T05: 120120.10578086
+    T06: 129203.30324219642
+    T07: 129426.05295510124
+    T08: 140700.05381311
+    T09: 157595.299217992
+    T10: 176482.56801288913
+    T11: 209867.62614364654
+    T12: 220556.27107064312
+    T13: 221690.03985333862
+    T14: 231230.8643677684
+    T15: 231230.8643677684
+    T16: 231230.8643677684
+    T17: 231230.8643677684
+    T18: 231230.8643677684
+    T19: 231230.8643677684
+    T20: 231230.8643677684
 
-    # portion of the dataset to use for validation
-    validation: 0.01
-
-    test: 0.01
-
-# these are parameters used for data pre-processing prior to training; they
-# determine the subset of the dataset that will be used for a training run
-preprocessing:
-    # minimum number of SNPs each sample should have
-    min_snp: 400
-
-    # minimum number of individuals in each sample
-    min_indiv: 50
-
-    # if greater than 0, the number of worker processes to use for
-    # preprocessing; using multiple workers can in some cases speed up
-    # preprocessing
-    n_workers: 2
-
-    # random seed to initialize PRNG; in particular randomization is used during
-    # pre-processing to separate scenarios into the training and validation
-    # sets, and specifying a seed ensures the split is consistent between runs
-    seed: null
+# standard deviation of each regression parameter over the training set
+train_std:
+    T00: 35901.0093386012
+    T01: 35901.0093386012
+    T02: 38140.29514141951
+    T03: 89760.81669436394
+    T04: 144446.91442512145
+    T05: 169582.15088756217
+    T06: 173660.11294769045
+    T07: 173448.01479626732
+    T08: 181578.5729349234
+    T09: 224480.46097338287
+    T10: 230473.25672867382
+    T11: 260468.96957038608
+    T12: 263875.9379244768
+    T13: 263965.2805974184
+    T14: 265847.46336129814
+    T15: 265847.46336129814
+    T16: 265847.46336129814
+    T17: 265847.46336129814
+    T18: 265847.46336129814
+    T19: 265847.46336129814
+    T20: 265847.46336129814
+dnadna_version: 1.0.0rc2.dev2+g7d8f198
+preprocessing_datetime: '2022-06-13T21:04:01.860839+00:00'
+inherit: DLModel_preprocessing_config.yml
