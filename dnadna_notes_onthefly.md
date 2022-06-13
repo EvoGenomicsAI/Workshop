@@ -11,8 +11,10 @@ Quickstart tuto 1 command lines are available on the repo (you can check that ou
 
 Notes on the fly:
 After training you can visualize the result using tensorboard. In a terminal run:
-tensorboard --logdir=DLModel --port 8601 --bind_all
-http://XXXX.compute-1.amazonaws.com:8601
+
+tensorboard --logdir=DLModel --port 9001 --bind_all
+
+http://XXXX.compute-1.amazonaws.com:9001
 Replace XXXX by the adress you had received
 
 
