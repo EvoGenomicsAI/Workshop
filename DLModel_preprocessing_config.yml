@@ -129,4 +129,4 @@ preprocessing:
     # random seed to initialize PRNG; in particular randomization is used during
     # pre-processing to separate scenarios into the training and validation
     # sets, and specifying a seed ensures the split is consistent between runs
-    seed: null
+    seed: 1
