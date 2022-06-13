@@ -109,7 +109,7 @@ dataset_splits:
 
     # portion of the dataset to use for validation
     validation: 0.01
-    
+
     test: 0.01
 
 # these are parameters used for data pre-processing prior to training; they
@@ -119,12 +119,12 @@ preprocessing:
     min_snp: 400
 
     # minimum number of individuals in each sample
-    min_indiv: 100
+    min_indiv: 50
 
     # if greater than 0, the number of worker processes to use for
     # preprocessing; using multiple workers can in some cases speed up
     # preprocessing
-    n_workers: 2
+    n_workers: 4
 
     # random seed to initialize PRNG; in particular randomization is used during
     # pre-processing to separate scenarios into the training and validation
