@@ -10,7 +10,7 @@ Quickstart tuto 1 command lines are available on the repo (you can check that ou
 
 
 # Notes on the fly:
-## 1 Running tensorboard
+## 1.  Running tensorboard
 After training you can visualize the result using tensorboard. 
 In the terminal (after login to your session with ssh):
 
@@ -25,7 +25,15 @@ http://XXXX.compute-1.amazonaws.com:8899
 
 where you replace XXXX by the adress you had received
 
-## 2
+## 2.  Understanding networks building blocks (to build your own)
+
+https://pytorch.org/docs/stable/nn.html
+
+In particular you can get inspiration from:
+- https://pytorch.org/docs/stable/generated/torch.nn.Linear.html#torch.nn.Linear  for classical fully connected layer 
+- https://pytorch.org/docs/stable/nn.html#convolution-layers  for convolutional layers
+- https://pytorch.org/docs/stable/nn.html#pooling-layers  for pooling layers
+- https://pytorch.org/docs/stable/nn.html#dropout-layers for adding dropout
 ... 
 
 
