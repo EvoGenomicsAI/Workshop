@@ -10,6 +10,12 @@ Quickstart tuto 1 command lines are available on the repo (you can check that ou
 
 
 # Notes on the fly:
+
+- Don't mind the tqdm warning produced by the first import cell
+- df_all_param  contains all the parameters for simulating the data (such as mutation, recombination, popualation, sizes, selection coefficient etc)
+- df_params contains the parameters corresponding to 21 population sizes at 21 time steps
+
+# Information
 ## 1.  Running tensorboard
 After training you can visualize the result using tensorboard. 
 In the terminal (after login to your session with ssh):
