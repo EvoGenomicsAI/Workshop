@@ -1,3 +1,5 @@
+Tutorial originally made by Jean Cury. 
+
 Please read carefully the tutorial, if you run things without changing parameters in config files.. 
 - ..to adapt to the data, paths etc.: it might just crash
 - ..to adapt to the computational resources we have: you will end up waiting forever.
