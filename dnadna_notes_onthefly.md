@@ -36,6 +36,12 @@ In particular you can get inspiration from:
 - https://pytorch.org/docs/stable/nn.html#dropout-layers for adding dropout
 ... 
 
+## 3. Implementing transforms
+- Try yourself, then check some of the transform in this [repo](https://github.com/EvoGenomicsAI/Workshop/blob/main/dnadna/) 
+- E.g. if you want use Matteo's ranking function (ranking lines) as a pluggin, see
+https://github.com/EvoGenomicsAI/Workshop/blob/main/dnadna/sort_rows_freq.py
+and https://github.com/EvoGenomicsAI/Workshop/blob/main/dnadna/DLModel_training_config_with_sort_rows.yml  (to check how it's called in the dataset_transforms section of the training config file)
+
 
 # References
 - J Cury, B Haller, G Achaz, F Jay (2022). Simulation of bacterial populations with SLiM.   10.24072/pcjournal.72 - Peer Community Journal, Volume 2, article no. e7. [Link](dx.doi.org/10.24072/pcjournal.72)
