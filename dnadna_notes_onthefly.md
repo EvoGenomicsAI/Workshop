@@ -43,3 +43,6 @@ where you replace XXXX by the adress you had received
 - T Sanchez*, EM Bray*, P Jobic, J Guez, A-C Letournel, G Charpiat, J Cury°, F Jay° (2021) Dnadna: Deep Neural Architecture for DNA - A deep learning framework for population genetic inference [Link](https://hal.archives-ouvertes.fr/hal-03352910v2)  
   
   preprint describing dnadna software:
+  
+  
+- For building blocks of new networks, see: https://pytorch.org/docs/stable/nn.html
