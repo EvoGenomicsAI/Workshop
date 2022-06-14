@@ -1,0 +1,261 @@
+# the main training configuration, typically generated from an existing
+# preprocessing config file
+
+# seed for initializing the PRNG prior to a training run for reproducible
+# results; if unspecified the PRNG chooses its default seeding method
+seed: 1
+
+# format string for the filename of the final output model; it can use the
+# template variables model_name, run_name, and/or run_id, while the required
+# variable "checkpoint" will be replaced with names like "best", "last" and
+# other intermediate checkpoints
+model_filename_format: '{model_name}_{run_name}_{checkpoint}_net.pth'
+
+# format string for the name given to this run for a sequence of runs of the
+# same model; the outputs of each run are placed in subdirectories of
+# <run_path>/<model_name> with the name of this run; the format string can use
+# the template variables model_name and run_id
+run_name_format: run_{run_id}
+
+# name and parameters of the neural net model to train
+network:
+    name: CustomCNN
+
+    # net parameters for CNN
+    params: {}
+
+# name and parameters of the optimizer to use; all built-in optimizers from the
+# torch.optim package are available for use here, and you can also provide a
+# custom optimizer via a plugin
+optimizer:
+    name: Adam
+    params:
+        learning_rate: 0.001
+        weight_decay: 0
+        betas:
+        - 0.9
+        - 0.999
+        eps: 1.0e-08
+        amsgrad: false
+        maximize: false
+
+# the dataset/simulation configuration
+dataset:
+    # path to the CSV file containing the per-scenario parameters used in this
+    # simulation, either as an absolute path, or as a path relative to this
+    # config file
+    scenario_params_path: DLModel_preprocessed_params.csv
+
+# list of transforms to apply to the dataset; all optional transforms are
+# disabled by default unless specified here; transforms which don't take any
+# parameters can be listed just by their name, whereas transforms which do take
+# parameters are given as {'name': <name>, 'param1':, 'param2':, ...}, where the
+# params map param names (specific to the transform) to their values
+dataset_transforms:
+-   crop:
+        max_snp: 400
+        max_indiv: 50
+        keep_polymorphic_only: true
+-   snp_format: concat
+-   validate_snp:
+        uniform_shape: false
+
+# number of epochs over which to repeat the training process
+n_epochs: 1
+
+# interval (number of batches processed) between two validation steps; for m
+# evaluations per epoch, set to n_training_samples // (batch_size * m) where the
+# number of training samples can be found in training logs
+evaluation_interval: 17
+
+# sample batch size to train on
+batch_size: 8
+
+# number of subprocesses to use for data loading
+loader_num_workers: 2
+
+# use CUDA-capable GPU where available
+use_cuda: true
+
+# specifies the CUDA device index to use
+cuda_device: null
+
+# description of the parameters the network will be trained on
+learned_params:
+-   T00:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T01:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T02:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T03:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T04:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T05:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T06:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T07:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T08:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T09:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T10:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T11:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T12:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T13:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T14:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T15:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T16:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T17:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T18:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T19:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+-   T20:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+        log_transform: false
+        tied_to_position: false
+
+# mean of each regression parameter over the training set
+train_mean:
+    T00: 78434.0483873386
+    T01: 78434.0483873386
+    T02: 78349.08390484436
+    T03: 92692.04896586003
+    T04: 98352.76941384625
+    T05: 99242.77936256827
+    T06: 111809.95776057016
+    T07: 138814.44403602096
+    T08: 143371.22739840584
+    T09: 150032.0140782605
+    T10: 176198.23434790442
+    T11: 189511.36607734364
+    T12: 209971.81612567272
+    T13: 226330.87769886965
+    T14: 239519.38464108377
+    T15: 239519.38464108377
+    T16: 239519.38464108377
+    T17: 239519.38464108377
+    T18: 239519.38464108377
+    T19: 239519.38464108377
+    T20: 239519.38464108377
+
+# standard deviation of each regression parameter over the training set
+train_std:
+    T00: 37069.62137879425
+    T01: 37069.62137879425
+    T02: 37210.153291596165
+    T03: 122873.9213179672
+    T04: 127210.64038049098
+    T05: 127379.15152412829
+    T06: 165156.53713117
+    T07: 212052.75288258606
+    T08: 211829.16022166924
+    T09: 222092.87900220865
+    T10: 248234.79394837626
+    T11: 261889.05739485065
+    T12: 277295.04709523247
+    T13: 281652.9553000403
+    T14: 282796.0208433797
+    T15: 282796.0208433797
+    T16: 282796.0208433797
+    T17: 282796.0208433797
+    T18: 282796.0208433797
+    T19: 282796.0208433797
+    T20: 282796.0208433797
+dnadna_version: 1.0.0rc2.dev2+g7d8f198
+preprocessing_datetime: '2022-06-13T21:18:40.413180+00:00'
+inherit: DLModel_preprocessing_config.yml

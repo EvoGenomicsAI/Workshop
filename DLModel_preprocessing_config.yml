@@ -1,0 +1,132 @@
+# required configuration for the `dnadna preprocess` command
+
+# root directory for all training runs of this model / training configuration
+model_root: .
+
+# unique name to give to models trained with this configuration; individual
+# training runs will prepend this to the run_id
+model_name: DLModel
+
+# the dataset/simulation configuration
+dataset:
+    inherit: ../dataset_config.yml
+
+# description of the parameters the network will be trained on
+learned_params:
+    T00:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T01:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T02:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T03:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T04:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T05:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T06:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T07:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T08:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T09:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T10:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T11:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T12:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T13:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T14:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T15:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T16:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T17:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T18:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T19:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+    T20:
+        type: regression
+        loss_func: MSE
+        loss_weight: 1
+
+# how to split the dataset between training, validation, and test sets numbers
+# given for each subset are ratios which must sum to 1; if less than 1 some
+# portion of the dataset will be omitted, and if more than 1 an error is raised
+# dataset splits are performed after unusable scenarios are omitted according to
+# the pre-processing parameters (min_snp, etc.)
+dataset_splits:
+    # portion of the dataset to use for training
+    training: 0.1
+
+    # portion of the dataset to use for validation
+    validation: 0.01
+
+    test: 0.01
+
+# these are parameters used for data pre-processing prior to training; they
+# determine the subset of the dataset that will be used for a training run
+preprocessing:
+    # minimum number of SNPs each sample should have
+    min_snp: 400
+
+    # minimum number of individuals in each sample
+    min_indiv: 50
+
+    # if greater than 0, the number of worker processes to use for
+    # preprocessing; using multiple workers can in some cases speed up
+    # preprocessing
+    n_workers: 4
+
+    # random seed to initialize PRNG; in particular randomization is used during
+    # pre-processing to separate scenarios into the training and validation
+    # sets, and specifying a seed ensures the split is consistent between runs
+    seed: 1
