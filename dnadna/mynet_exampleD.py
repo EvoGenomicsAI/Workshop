@@ -13,7 +13,7 @@ class MyCNN(Network):
         self.pool = nn.MaxPool2d(2, 2)
 
         self.conv2 = nn.Conv2d(n_features, 20, kernel_size=3, stride=2, bias=False)
-        self.pool2 = nn.MaxPool1d(1, 2)
+        self.pool2 = nn.AvgPool1d(1, 2)
         self.fc1 = nn.Linear(480, 5)  # constraint for 400 snp and 50 indiv.
         self.fc2 = nn.Linear(5, n_outputs)
 
